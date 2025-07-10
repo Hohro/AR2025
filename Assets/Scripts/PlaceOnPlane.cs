@@ -10,6 +10,7 @@ public class PlaceOnPlane : MonoBehaviour
     private int currentIndex = 0;
     private ARRaycastManager raycastManager;
     private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    public ModeSwitcher modeSwitcher;
 
     void Start()
     {
@@ -18,15 +19,18 @@ public class PlaceOnPlane : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!modeSwitcher.markerMode)
         {
-            Debug.Log("Pressed left-click.");
-            Vector2 screenPosition = Input.mousePosition;
-
-            if (raycastManager.Raycast(screenPosition, hits, TrackableType.PlaneWithinPolygon))
+            if (Input.GetMouseButtonDown(0))
             {
-                Pose hitPose = hits[0].pose;
-                Instantiate(objectPrefabs[currentIndex], hitPose.position, hitPose.rotation);
+                Debug.Log("Pressed left-click.");
+                Vector2 screenPosition = Input.mousePosition;
+
+                if (raycastManager.Raycast(screenPosition, hits, TrackableType.PlaneWithinPolygon))
+                {
+                    Pose hitPose = hits[0].pose;
+                    Instantiate(objectPrefabs[currentIndex], hitPose.position, hitPose.rotation);
+                }
             }
         }
     }
