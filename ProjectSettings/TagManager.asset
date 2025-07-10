@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - PlacedObject
+  - MarkerMemory
   layers:
   - Default
   - TransparentFX

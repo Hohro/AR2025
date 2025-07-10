@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using System.Collections.Generic;
-using System.Collections;
 
 public class PlaceOnPlane : MonoBehaviour
 {
@@ -15,22 +14,22 @@ public class PlaceOnPlane : MonoBehaviour
     void Start()
     {
         raycastManager = GetComponent<ARRaycastManager>();
+        if (raycastManager == null)
+        {
+            Debug.LogError("ARRaycastManager fehlt!");
+        }
     }
 
     void Update()
     {
-        if (!modeSwitcher.markerMode)
+        if (!modeSwitcher.markerMode && Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            Vector2 screenPosition = Input.mousePosition;
+            if (raycastManager.Raycast(screenPosition, hits, TrackableType.PlaneWithinPolygon))
             {
-                Debug.Log("Pressed left-click.");
-                Vector2 screenPosition = Input.mousePosition;
-
-                if (raycastManager.Raycast(screenPosition, hits, TrackableType.PlaneWithinPolygon))
-                {
-                    Pose hitPose = hits[0].pose;
-                    Instantiate(objectPrefabs[currentIndex], hitPose.position, hitPose.rotation);
-                }
+                Pose hitPose = hits[0].pose;
+                GameObject obj = Instantiate(objectPrefabs[currentIndex], hitPose.position, hitPose.rotation);
+                obj.tag = "PlacedObject";
             }
         }
     }
@@ -47,4 +46,8 @@ public class PlaceOnPlane : MonoBehaviour
             currentIndex = objectPrefabs.Count - 1;
     }
 
+    public int GetCurrentIndex()
+    {
+        return currentIndex;
+    }
 }
