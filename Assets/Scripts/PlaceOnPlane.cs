@@ -6,7 +6,8 @@ using System.Collections;
 
 public class PlaceOnPlane : MonoBehaviour
 {
-    public GameObject objectToPlace;
+    public List<GameObject> objectPrefabs;
+    private int currentIndex = 0;
     private ARRaycastManager raycastManager;
     private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -25,8 +26,21 @@ public class PlaceOnPlane : MonoBehaviour
             if (raycastManager.Raycast(screenPosition, hits, TrackableType.PlaneWithinPolygon))
             {
                 Pose hitPose = hits[0].pose;
-                Instantiate(objectToPlace, hitPose.position, hitPose.rotation);
+                Instantiate(objectPrefabs[currentIndex], hitPose.position, hitPose.rotation);
             }
         }
     }
+
+    public void NextPrefab()
+    {
+        currentIndex = (currentIndex + 1) % objectPrefabs.Count;
+    }
+
+    public void PreviousPrefab()
+    {
+        currentIndex--;
+        if (currentIndex < 0)
+            currentIndex = objectPrefabs.Count - 1;
+    }
+
 }
