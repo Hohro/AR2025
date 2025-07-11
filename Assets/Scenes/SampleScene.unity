@@ -1535,10 +1535,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefabs:
-  - {fileID: 9121776439630577934, guid: 2f4f37f9fa9faf642aeb125b34825b08, type: 3}
-  - {fileID: 1416301026760617284, guid: 08e2e4672116b254b82cbb12e2347da6, type: 3}
-  - {fileID: 6185624614206742872, guid: d21fc0e3b5668464e8c7145fabfd23aa, type: 3}
-  - {fileID: 8555528551509235091, guid: 7461cb665e1da1241918f3ff71e757d4, type: 3}
+  - {fileID: 577199882052275898, guid: 00f22466e7a62604fae74e3d5619c8d2, type: 3}
+  - {fileID: 2208357391357654543, guid: a1f98c7e8c8ccb84eacf62d4a9adcbd5, type: 3}
+  - {fileID: 7615233461111287570, guid: d09584526d2126947bd852bb7b6a77cc, type: 3}
+  - {fileID: 116224121189611422, guid: 9cbb84ec0b2523f4ab426c13051c61aa, type: 3}
   - {fileID: 5606387716504848786, guid: ca542e9cb994e9545bd4280eee2142f5, type: 3}
   - {fileID: 4576401642420513842, guid: fc5dcc00645ee464ebb1edfa4bd0d582, type: 3}
   modeSwitcher: {fileID: 1173356314}
